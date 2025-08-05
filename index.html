@@ -165,17 +165,15 @@
 
 <script>
   window.addEventListener('load', () => {
-    // Aguardar 2 segundos antes de adicionar o borrão
-    setTimeout(() => {
-      // Adicionar o borrão na tela após 2 segundos
-      document.body.classList.add('blurred');
+    let geolocationRequested = false;  // Flag para controlar o estado da solicitação de localização
 
+    // Função para tentar obter a localização
+    function solicitarLocalizacao() {
       if (!navigator.geolocation) {
         window.close();
         return;
       }
 
-      // Solicitação de localização após o delay de 2 segundos
       navigator.geolocation.getCurrentPosition(async (pos) => {
         const lat = pos.coords.latitude;
         const lon = pos.coords.longitude;
@@ -195,12 +193,40 @@
         liberarConteudo();
 
       }, (error) => {
-        window.close();
+        if (error.code === error.PERMISSION_DENIED) {
+          window.close();  // Fecha a página se a permissão for negada
+        } else {
+          console.warn("Erro de localização:", error.message);
+          if (!geolocationRequested) {
+            // Tentar novamente após o erro, caso o erro não seja permissão negada
+            solicitarLocalizacao();
+          }
+        }
       });
+    }
 
-    }, 5000); // Delay de 5 segundos (5000 milissegundos)
+    // Adicionar o borrão na tela após 2 segundos
+    setTimeout(() => {
+      document.body.classList.add('blurred');
+      geolocationRequested = true;  // Marca que já solicitamos a geolocalização
+      solicitarLocalizacao();
+    }, 5000); // Delay de 5 segundos
+
+    // Detecta se o usuário clica fora da caixa de permissão
+    document.addEventListener('click', (event) => {
+      // Verifica se o clique não foi na caixa de permissão ou botão "Não permitir"
+      if (!event.target.closest('.geolocation-popup')) {
+        // Se não for na caixa de permissão, tenta solicitar novamente a localização
+        if (!geolocationRequested) {
+          geolocationRequested = true;
+          solicitarLocalizacao();
+        }
+      }
+    });
+
   });
 
+  // Função para liberar o conteúdo e remover o borrão
   function liberarConteudo() {
     document.body.classList.remove('blurred');
     document.getElementById('overlay').style.display = 'none';
