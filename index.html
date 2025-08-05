@@ -97,27 +97,59 @@
       user-select: none;
     }
 
-   #overlay {
+#overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7); /* Tornar o fundo um pouco mais escuro para chamar mais atenção */
+  background: rgba(0, 0, 0, 0.7); /* Fundo mais escuro para criar um contraste */
   z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
-  font-size: 20px; /* Aumentar o tamanho da fonte para maior visibilidade */
-  font-family: 'Arial', sans-serif;
+  color: #f0f0f0; /* Cor do texto mais suave */
+  font-size: 18px; /* Reduzir um pouco o tamanho para um estilo mais suave */
+  font-family: 'Helvetica Neue', Arial, sans-serif; /* Usar uma fonte mais moderna e amigável */
   user-select: none;
-  text-align: center; /* Alinhar o texto no centro */
-  padding: 20px;
-  border-radius: 8px; /* Tornar as bordas arredondadas */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Adicionar sombra para dar destaque */
-  transition: opacity 0.3s ease; /* Adicionar um efeito de transição suave caso precise ocultar */
+  text-align: center; /* Centralizar o texto */
+  padding: 30px;
+  border-radius: 12px; /* Bordas ainda mais suaves */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6); /* Sombra mais suave para um toque moderno */
+  transition: opacity 0.3s ease; /* Suavizar o efeito de transição */
+  max-width: 80%; /* Limitar a largura para que o texto não fique muito grande */
+  word-wrap: break-word; /* Quebrar palavras longas para evitar sobrecarga visual */
 }
+
+#overlay h2 {
+  margin: 0 0 15px 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: #ffd700; /* Cor dourada para o título, criando destaque sem ser agressivo */
+}
+
+#overlay p {
+  margin: 0;
+  font-size: 18px;
+  color: #e0e0e0; /* Tom suave para o texto de aviso */
+}
+
+#overlay .action-button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  background-color: #4CAF50; /* Cor verde, mais amigável e associada a aprovação */
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#overlay .action-button:hover {
+  background-color: #45a049; /* Cor verde mais escura no hover */
+}
+
   </style>
 </head>
 <body>
