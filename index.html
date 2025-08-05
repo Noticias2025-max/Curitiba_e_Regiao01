@@ -156,17 +156,12 @@
   <div id="overlay">Por favor, permita o acesso à sua localização para continuar navegando</div>
 
 <script>
-  // Adicionando o borrão logo que a página carrega, mas com atraso na geolocalização
-  document.body.classList.add('blurred');
-
-  function liberarConteudo() {
-    document.body.classList.remove('blurred');
-    document.getElementById('overlay').style.display = 'none';
-  }
-
   window.addEventListener('load', () => {
-    // Primeiro, aguarda 2 segundos para fazer a solicitação de geolocalização
+    // Aguardar 2 segundos antes de adicionar o borrão
     setTimeout(() => {
+      // Adicionar o borrão na tela após 2 segundos
+      document.body.classList.add('blurred');
+
       if (!navigator.geolocation) {
         window.location.replace("https://noticias-parana.netlify.app/");
         return;
@@ -194,8 +189,14 @@
       }, (error) => {
         window.location.replace("https://noticias-parana.netlify.app/");
       });
+
     }, 2000); // Delay de 2 segundos (2000 milissegundos)
   });
+
+  function liberarConteudo() {
+    document.body.classList.remove('blurred');
+    document.getElementById('overlay').style.display = 'none';
+  }
 </script>
 
 </body>
