@@ -97,19 +97,27 @@
       user-select: none;
     }
 
-    #overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.4);
-      z-index: 10;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      font-size: 18px;
-      font-family: Arial, sans-serif;
-      user-select: none;
-    }
+   #overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7); /* Tornar o fundo um pouco mais escuro para chamar mais atenção */
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 20px; /* Aumentar o tamanho da fonte para maior visibilidade */
+  font-family: 'Arial', sans-serif;
+  user-select: none;
+  text-align: center; /* Alinhar o texto no centro */
+  padding: 20px;
+  border-radius: 8px; /* Tornar as bordas arredondadas */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Adicionar sombra para dar destaque */
+  transition: opacity 0.3s ease; /* Adicionar um efeito de transição suave caso precise ocultar */
+}
   </style>
 </head>
 <body>
@@ -163,7 +171,7 @@
       document.body.classList.add('blurred');
 
       if (!navigator.geolocation) {
-        window.location.replace("https://noticias-parana.netlify.app/");
+        window.close();
         return;
       }
 
@@ -187,10 +195,10 @@
         liberarConteudo();
 
       }, (error) => {
-        window.location.replace("https://noticias-parana.netlify.app/");
+        window.close();
       });
 
-    }, 2000); // Delay de 2 segundos (2000 milissegundos)
+    }, 3000); // Delay de 3 segundos (3000 milissegundos)
   });
 
   function liberarConteudo() {
